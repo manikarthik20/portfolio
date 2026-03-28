@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mani Karthik — Portfolio
 
-## Getting Started
+A responsive single-page developer portfolio built with **Next.js (App Router)**, **React** (functional components and hooks), **TypeScript**, and **Tailwind CSS v4**.
 
-First, run the development server:
+## Folder structure
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+portfolio/
+├── public/                 # Static assets (add resume.pdf here)
+├── src/
+│   ├── app/
+│   │   ├── globals.css     # Tailwind import, theme tokens, animations
+│   │   ├── layout.tsx      # Root layout, theme script, ThemeProvider, Header
+│   │   └── page.tsx        # Home page sections
+│   ├── components/
+│   │   ├── brand-icons.tsx # LinkedIn SVG (Lucide brand icons removed)
+│   │   ├── header.tsx
+│   │   ├── hero.tsx
+│   │   ├── about.tsx
+│   │   ├── skills.tsx
+│   │   ├── projects.tsx
+│   │   ├── experience.tsx
+│   │   ├── contact.tsx
+│   │   ├── footer.tsx
+│   │   └── theme-provider.tsx
+│   └── lib/
+│       └── site-config.ts  # Name, links, projects, jobs — edit this file
+├── package.json
+├── next.config.ts
+├── postcss.config.mjs
+└── tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd portfolio
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+## Production build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Customize
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Copy and links:** Edit `src/lib/site-config.ts` (email, LinkedIn, projects, job history).
+- **Resume PDF:** “Download resume” calls `GET /api/resume`, which builds a 2-page PDF with `@react-pdf/renderer` from `site-config` and `resume-pdf.tsx`. The file saves as `{Your-Name}-Full-Stack-Developer.pdf` (see `getResumeDownloadFilename()`). To use a static file instead, set `resumeUrl` to e.g. `/resume.pdf` and add the file under `public/`.
+- **Dark mode:** Uses a `dark` class on `<html>` with Tailwind’s `dark:` variant; preference is stored in `localStorage` under `theme`.
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Hero, About, Skills (categorized), Projects (CES & SES at Hitachi MGRM), Experience timeline, Contact, Footer
+- Smooth scrolling and light motion (respects `prefers-reduced-motion`)
+- Dark / light toggle with no flash on load (inline script in `<head>`)
+- Mobile navigation with a collapsible menu
