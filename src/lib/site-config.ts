@@ -16,7 +16,7 @@ export const siteConfig = {
   techSubtitle: "Java · Spring Boot · React · Node.js · Next.js · NestJS",
   experienceYears: "4.3",
   location: "Hyderabad, India",
-  email: "manikarthik1611@gmail.com",
+  email: "manikarthik9902@gmail.com",
   linkedin: "https://www.linkedin.com/in/mani-karthik-ab3428211/",
   /** Generated PDF download (see /api/resume). Legacy static file path if you host a manual PDF. */
   resumeUrl: "/api/resume",
