@@ -3,7 +3,6 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { siteConfig } from "@/lib/site-config";
 import { ThemeToggle } from "@/components/theme-provider";
 
 const nav = [
@@ -14,7 +13,13 @@ const nav = [
   { href: "#contact", label: "Contact" },
 ];
 
-export function Header() {
+export function Header({
+  brandInitials,
+  brandName,
+}: {
+  brandInitials: string;
+  brandName: string;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,9 +30,9 @@ export function Header() {
           className="group flex shrink-0 items-center gap-2 font-semibold tracking-tight text-slate-900 transition dark:text-white"
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-fuchsia-600 text-sm font-bold text-white shadow-lg shadow-violet-500/25 transition group-hover:shadow-violet-500/40">
-            MK
+            {brandInitials}
           </span>
-          <span className="hidden sm:inline">{siteConfig.name}</span>
+          <span className="hidden sm:inline">{brandName}</span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">

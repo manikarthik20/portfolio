@@ -1,12 +1,14 @@
 /** Update email, LinkedIn, phone, and resume path as needed. */
 export const siteConfig = {
-  name: "Mani Karthik",
+  name: "Manikarthik Chandankeri",
   role: "Full-Stack Developer",
   /** Shown on generated PDF header (portfolio role may differ). */
   resumeHeadlineRole: "Backend Developer",
   resumeHeadlineStack: "Java | Spring Boot | Node.js | NestJS",
-  /** Set your number; hidden in PDF if empty. */
-  phone: "",
+  /** Set your number; hidden in PDF / contact if empty. */
+  phone: "+91 93981 24090",
+  /** Used for tel: links (digits with country code). */
+  phoneTel: "+919398124090",
   /** Optional; omit line in PDF if empty (no public GitHub is fine). */
   githubUrl: "",
   tagline:
@@ -14,12 +16,12 @@ export const siteConfig = {
   techSubtitle: "Java · Spring Boot · React · Node.js · Next.js · NestJS",
   experienceYears: "4.3",
   location: "Hyderabad, India",
-  email: "mani.karthik@example.com",
-  linkedin: "https://www.linkedin.com/in/manikarthik",
+  email: "manikarthik1611@gmail.com",
+  linkedin: "https://www.linkedin.com/in/mani-karthik-ab3428211/",
   /** Generated PDF download (see /api/resume). Legacy static file path if you host a manual PDF. */
   resumeUrl: "/api/resume",
   /**
-   * PDF download filename suffix. Empty = derive from `role` (e.g. Mani-Karthik-Full-Stack-Developer.pdf).
+   * PDF download filename suffix. Empty = derive from `role` (e.g. Manikarthik-Chandankeri-Full-Stack-Developer.pdf).
    * Set e.g. "Backend-Developer" to force that suffix while keeping a different `role` on the site.
    */
   resumeDownloadFilenameRole: "",
@@ -98,6 +100,16 @@ export const siteConfig = {
     },
   ],
 } as const;
+
+/** First letters of the first two name parts (e.g. "Manikarthik Chandankeri" → "MC"). */
+export function getNameInitials(name: string): string {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]!.toUpperCase())
+    .join("");
+}
 
 /** Safe ASCII filename for Content-Disposition when downloading the generated resume PDF. */
 export function getResumeDownloadFilename(): string {

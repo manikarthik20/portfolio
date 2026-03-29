@@ -1,4 +1,4 @@
-import { Download, Mail } from "lucide-react";
+import { Download, Mail, Phone } from "lucide-react";
 import Link from "next/link";
 import { LinkedInIcon } from "@/components/brand-icons";
 import { getResumeDownloadFilename, siteConfig } from "@/lib/site-config";
@@ -16,6 +16,15 @@ export function Contact() {
           Reach out for roles, collaborations, or a conversation about backend architecture and delivery.
         </p>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
+          {"phoneTel" in siteConfig && siteConfig.phoneTel ? (
+            <a
+              href={`tel:${siteConfig.phoneTel}`}
+              className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-white/40 bg-white/10 px-6 py-3.5 text-base font-semibold backdrop-blur transition hover:bg-white/20"
+            >
+              <Phone className="h-5 w-5" aria-hidden />
+              {siteConfig.phone}
+            </a>
+          ) : null}
           <a
             href={`mailto:${siteConfig.email}`}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-semibold text-violet-700 shadow-lg transition hover:bg-violet-50"

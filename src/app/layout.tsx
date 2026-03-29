@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { getNameInitials, siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,7 +29,7 @@ const themeInitScript = `
 `;
 
 export const metadata: Metadata = {
-  title: "Mani Karthik | Full-Stack Developer",
+  title: "Manikarthik Chandankeri | Full-Stack Developer",
   description:
     "Full-stack developer in Hyderabad. Java, Spring Boot, React, Next.js, NestJS. REST APIs, multitenant systems, async reporting.",
 };
@@ -45,7 +46,10 @@ export default function RootLayout({
       </head>
       <body className="min-h-full bg-background text-foreground">
         <ThemeProvider>
-          <Header />
+          <Header
+            brandInitials={getNameInitials(siteConfig.name)}
+            brandName={siteConfig.name}
+          />
           {children}
         </ThemeProvider>
       </body>

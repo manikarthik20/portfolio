@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT,
     fontWeight: 700,
     color: colors.text,
-    marginBottom: 4,
+    marginBottom: 9,
     letterSpacing: 0.12,
   },
   headlineTitle: {
