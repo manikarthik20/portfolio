@@ -9,13 +9,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
-  /**
-   * Vercel serverless bundles omit deep node_modules paths by default.
-   * Resume PDF uses Inter .woff files from @fontsource/inter; without this,
-   * /api/resume throws at runtime and the browser reports a failed download.
-   */
+  /** Ship committed Inter fonts in /fonts/inter with the /api/resume lambda. */
   outputFileTracingIncludes: {
-    "/api/resume": ["./node_modules/@fontsource/inter/files/**/*.woff"],
+    "/api/resume": ["./fonts/inter/**/*.woff"],
   },
 };
 

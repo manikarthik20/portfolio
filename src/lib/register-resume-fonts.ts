@@ -1,14 +1,29 @@
+import fs from "fs";
 import path from "path";
 import { Font } from "@react-pdf/renderer";
 
 let didRegister = false;
 
-/** Register Inter from @fontsource/inter (latin .woff for broad @react-pdf support). */
+/**
+ * Prefer committed fonts under /fonts/inter so Vercel’s serverless bundle always
+ * includes them. Fall back to @fontsource/inter in node_modules for local dev.
+ */
+function resolveInterDir(): string {
+  const committed = path.join(process.cwd(), "fonts", "inter");
+  if (
+    fs.existsSync(path.join(committed, "inter-latin-400-normal.woff"))
+  ) {
+    return committed;
+  }
+  return path.join(process.cwd(), "node_modules/@fontsource/inter/files");
+}
+
+/** Register Inter (.woff) for @react-pdf/renderer. */
 export function registerResumeFonts(): void {
   if (didRegister) return;
   didRegister = true;
 
-  const dir = path.join(process.cwd(), "node_modules/@fontsource/inter/files");
+  const dir = resolveInterDir();
 
   Font.register({
     family: "Inter",
