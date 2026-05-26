@@ -14,7 +14,7 @@ export const siteConfig = {
   tagline:
     "Building RESTful APIs, responsive web apps, and scalable backends—from monoliths to multitenant services and async workloads.",
   techSubtitle: "Java · Spring Boot · React · Node.js · Next.js · NestJS",
-  experienceYears: "4.3",
+  experienceYears: "4.6",
   location: "Hyderabad, India",
   email: "manikarthik9902@gmail.com",
   linkedin: "https://www.linkedin.com/in/mani-karthik-ab3428211/",

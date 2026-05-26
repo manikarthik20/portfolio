@@ -349,11 +349,11 @@ const styles = StyleSheet.create({
 });
 
 const pdfSkillCategories: { label: string; value: string }[] = [
-  { label: "Languages", value: "Java, JavaScript, SQL" },
+  { label: "Languages", value: "Java, JavaScript" },
   { label: "Backend", value: "Spring Boot, Node.js (NestJS)" },
   { label: "Frontend", value: "React (Basics), TanStack Query" },
-  { label: "Database", value: "PostgreSQL, MySQL" },
-  { label: "Tools", value: "Docker, Redis, Git, PG-Boss, JasperReports" },
+  { label: "Database", value: "PostgreSQL, MySQL, Redis" },
+  { label: "Tools", value: "Docker, Git, PG-Boss, JasperReports, Drizzle ORM" },
 ];
 
 const MAX_PROJECT_BULLETS = 4;

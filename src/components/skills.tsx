@@ -4,7 +4,7 @@ const categories = [
   {
     title: "Languages",
     icon: Code2,
-    items: ["Java", "JavaScript", "SQL"],
+    items: ["Java", "JavaScript"],
   },
   {
     title: "Backend",
@@ -19,12 +19,12 @@ const categories = [
   {
     title: "Database",
     icon: Database,
-    items: ["PostgreSQL", "MySQL", "Oracle"],
+    items: ["PostgreSQL", "MySQL", "Oracle", "Redis"],
   },
   {
     title: "Tools",
     icon: Wrench,
-    items: ["Git", "GitLab", "Postman", "PG-Boss"],
+    items: ["Git", "GitLab", "Postman", "PG-Boss", "Drizzle ORM"],
   },
 ];
 
