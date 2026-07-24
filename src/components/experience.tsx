@@ -14,8 +14,8 @@ const highlights = [
   },
   {
     icon: Gauge,
-    title: "Full-stack delivery",
-    body: "Spring and Nest backends with React or Next.js UIs—auth, persistence tuning, and performance-aware features.",
+    title: "Full-stack & mobile delivery",
+    body: "Spring/Nest/Fastify backends with React and Next.js web UIs and Expo/React Native mobile apps—auth, persistence tuning, and performance-aware features.",
   },
 ];
 
@@ -30,13 +30,13 @@ export function Experience() {
           {siteConfig.experienceYears} years in software engineering
         </p>
         <p className="mt-4 max-w-3xl text-lg text-slate-600 dark:text-slate-300">
-          I&apos;ve worked across the stack in Hyderabad—from Java CRM systems to full-stack product work at Hitachi MGRM.
-          Recent focus includes{" "}
-          <strong className="text-slate-900 dark:text-white">REST API development</strong>,{" "}
-          <strong className="text-slate-900 dark:text-white">Spring Boot and NestJS</strong> services,{" "}
-          <strong className="text-slate-900 dark:text-white">React and Next.js</strong> front ends, plus{" "}
+          I&apos;ve worked across the stack in Hyderabad—from Java CRM systems to full-stack product work at Hitachi MGRM,
+          including a healthcare enterprise system and a patient-facing mobile app. Recent focus includes{" "}
+          <strong className="text-slate-900 dark:text-white">REST/RPC API development</strong>,{" "}
+          <strong className="text-slate-900 dark:text-white">NestJS and Fastify</strong> services,{" "}
+          <strong className="text-slate-900 dark:text-white">React, Next.js and React Native</strong> front ends, plus{" "}
           <strong className="text-slate-900 dark:text-white">async report pipelines</strong> and{" "}
-          <strong className="text-slate-900 dark:text-white">multitenant</strong> Java backends.
+          <strong className="text-slate-900 dark:text-white">multitenant</strong> backends.
         </p>
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {highlights.map((h) => {

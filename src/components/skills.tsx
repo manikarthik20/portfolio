@@ -1,30 +1,40 @@
-import { Code2, Database, Layers, Monitor, Wrench } from "lucide-react";
+import { Code2, Database, Layers, Monitor, Smartphone, Sparkles, Wrench } from "lucide-react";
 
 const categories = [
   {
     title: "Languages",
     icon: Code2,
-    items: ["Java", "JavaScript", "SQL"],
+    items: ["Java", "TypeScript", "JavaScript", "SQL"],
   },
   {
     title: "Backend",
     icon: Layers,
-    items: ["Spring Boot", "Node.js", "NestJS"],
+    items: ["Spring Boot", "NestJS", "Node.js", "Fastify", "ConnectRPC"],
   },
   {
     title: "Frontend",
     icon: Monitor,
-    items: ["React", "Next.js", "TanStack Query"],
+    items: ["React", "Next.js", "TanStack Query", "Tailwind CSS"],
+  },
+  {
+    title: "Mobile",
+    icon: Smartphone,
+    items: ["React Native", "Expo", "Expo Router"],
   },
   {
     title: "Database",
     icon: Database,
-    items: ["PostgreSQL", "MySQL", "Oracle"],
+    items: ["PostgreSQL", "Drizzle ORM", "MySQL", "Oracle"],
   },
   {
-    title: "Tools",
+    title: "Tools & Auth",
     icon: Wrench,
-    items: ["Git", "GitLab", "Postman", "PG-Boss"],
+    items: ["Git", "GitLab", "Postman", "better-auth", "PG-Boss"],
+  },
+  {
+    title: "AI-assisted dev",
+    icon: Sparkles,
+    items: ["Cursor", "Claude"],
   },
 ];
 

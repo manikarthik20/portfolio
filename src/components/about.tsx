@@ -11,7 +11,7 @@ export function About() {
           About me
         </h2>
         <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Building reliable backends that scale
+          Building full-stack products, end to end
         </p>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start">
           <div className="prose prose-slate max-w-none dark:prose-invert">
@@ -39,7 +39,10 @@ export function About() {
               <strong className="text-slate-900 dark:text-white">report generation</strong> pipelines when exports are
               heavy, and{" "}
               <strong className="text-slate-900 dark:text-white">backend architecture</strong>—domains, observability,
-              and data integrity—so features ship safely and quickly.
+              and data integrity—so features ship safely and quickly. Recently I&apos;ve delivered a{" "}
+              <strong className="text-slate-900 dark:text-white">healthcare enterprise system</strong> and a{" "}
+              <strong className="text-slate-900 dark:text-white">React Native</strong> patient app, owning the work from
+              API to UI.
             </p>
           </div>
           <aside className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-lg shadow-slate-200/50 dark:border-slate-700 dark:bg-slate-900 dark:shadow-none">
