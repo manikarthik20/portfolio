@@ -29,7 +29,7 @@ const categories = [
   {
     title: "Tools & Auth",
     icon: Wrench,
-    items: ["Git", "GitLab", "Postman", "better-auth", "PG-Boss"],
+    items: ["Git", "GitLab", "Postman", "better-auth","PG-Boss", "BullMQ"],
   },
   {
     title: "AI-assisted dev",

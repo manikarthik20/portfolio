@@ -38,11 +38,12 @@ export const siteConfig = {
       /** Optional screenshot in /public (e.g. "/projects/ces.png"); card hides the image if empty. */
       image: "",
       description:
-        "College Expert System at Hitachi MGRM—a monolithic Java Spring Boot application using JSP for server-rendered views. Owned end-to-end features across domain logic, persistence, and the presentation layer within a single deployable stack.",
-      tech: ["Java", "Spring Boot", "JSP", "Monolith"],
+        "College Expert System at Hitachi MGRM—a monolithic Java Spring Boot application using JSP for server-rendered views. Owned end-to-end features across domain logic, persistence, and the presentation layer within a single deployable stack. Recently integrated KOHA, an open-source integrated library system (ILS), over its REST API—syncing students and staff as library patrons and driving catalog, circulation, and fines/overdue reporting from within CES.",
+      tech: ["Java", "Spring Boot", "JSP", "Monolith", "KOHA", "REST API"],
       resumeBullets: [
         "Maintained College Expert System as a monolithic Java Spring Boot app with JSP-based server-rendered views at Hitachi MGRM.",
         "Owned features across domain logic, persistence, and presentation within one deployable stack.",
+        "Integrated KOHA (open-source ILS) over its REST API—syncing students and staff as library patrons and surfacing catalog, circulation, and fines/overdue reporting inside CES.",
         "Collaborated on a stable release cadence with clear layering between services, data access, and UI templates.",
       ],
     },
@@ -50,7 +51,7 @@ export const siteConfig = {
       title: "SES (School Expert System)",
       image: "",
       description:
-        "School Expert System spanning Java Spring Boot, NestJS, and a Next.js frontend. Built and integrated REST APIs across services; implemented multitenant behavior with tenant filters, tenant context, and a dedicated JAR for tenant resolution. Delivered the student Scholarship module end-to-end, owning both the REST APIs (Spring Boot/NestJS) and the SES UI (Next.js + Mantine, Redux/redux-saga, React Query, React Hook Form). Replaced slow in-browser JasperReports loading with a separate NestJS report server using PG-Boss queues for async report generation.",
+        "School Expert System spanning Java Spring Boot, NestJS, and a Next.js frontend. Built and integrated REST APIs across services; implemented multitenant behavior with tenant filters, tenant context, and a dedicated JAR for tenant resolution. Delivered the student Scholarship module end-to-end, owning both the REST APIs (Spring Boot/NestJS) and the SES UI (Next.js + Mantine, Redux/redux-saga, React Query, React Hook Form). Moved report generation off the slow synchronous in-process JasperReports (Java) path onto a separate async NestJS report server—first on pg-boss, later migrated to BullMQ (Redis)—that streams query results straight to file and renders the PDF documents with PDFKit instead of blocking user-facing APIs.",
       tech: [
         "Spring Boot",
         "NestJS",
@@ -59,15 +60,17 @@ export const siteConfig = {
         "React Query",
         "PostgreSQL",
         "PG-Boss",
+        "BullMQ",
         "JasperReports",
+        "PDFKit",
         "Multitenancy",
       ],
       resumeBullets: [
         "Built School Expert System across Spring Boot, NestJS, and Next.js with REST APIs spanning backend and frontend integration.",
         "Implemented multitenant isolation using tenant filters, tenant context, and a dedicated JAR for tenant resolution.",
         "Owned the student Scholarship module across the Spring Boot/NestJS backend and the SES UI (Next.js, Mantine, Redux/redux-saga, React Query, React Hook Form).",
-        "Designed a queue-based async report pipeline: NestJS + PG-Boss to offload JasperReports and avoid blocking user-facing APIs.",
-        "Improved report turnaround for large PDF/Excel outputs versus synchronous in-process Jasper generation in Java.",
+        "Re-architected reporting off the synchronous in-process JasperReports (Java) path onto an async NestJS queue—first pg-boss, then migrated to BullMQ (Redis)—to keep user-facing APIs responsive.",
+        "Streamed large exports row-by-row from Postgres to file with a concurrency-limited worker, rendering the PDF reports with PDFKit and eliminating the whole-result in-memory buffering and request-thread blocking of the legacy Jasper path.",
       ],
     },
     {
@@ -98,7 +101,7 @@ export const siteConfig = {
       title: "Patient Portal — Assam Patient Experience Portal",
       image: "",
       description:
-        "Patient-facing application for MStar HES—the Assam Patient Experience Portal—giving patients one account across seven medical-college hospitals for appointment booking, live queue tokens, results, prescriptions, payments, and family profiles. Owned it end-to-end: UI/UX, the Expo / React Native mobile app (Expo Router) and web PWA, and the patient-scoped backend APIs (Fastify + ConnectRPC, Drizzle ORM, better-auth). Includes UHID + OTP login with a biometric app lock, TanStack Query offline persistence, and a hardened security posture (SSL public-key pinning, jailbreak/root detection, screen-capture guards).",
+        "Patient-facing application for MStar HES—the Assam Patient Experience Portal—giving patients one account across seven medical-college hospitals for appointment booking, live queue tokens, results, prescriptions, payments, and family profiles. Owned it end-to-end: UI/UX, the Expo / React Native mobile app (Expo Router) and web PWA, and the patient-scoped backend APIs (Fastify + ConnectRPC, Drizzle ORM, better-auth). Includes UHID + OTP login.",
       tech: [
         "UI/UX",
         "Expo",
@@ -115,7 +118,6 @@ export const siteConfig = {
         "Owned the Assam Patient Experience Portal end-to-end—UI/UX, the Expo / React Native mobile app and web PWA, and the patient-scoped backend APIs.",
         "Built the mobile app (Expo / React Native, Expo Router) covering booking, live queue tokens, results, prescriptions, payments, and family profiles across seven hospitals.",
         "Developed patient-scoped RPC APIs (Fastify + ConnectRPC, Drizzle ORM) and UHID + OTP authentication with better-auth.",
-        "Implemented a biometric app lock, TanStack Query offline persistence with on-device SQLite, and push notifications; hardened the app with SSL public-key pinning, jailbreak/root detection, and screen-capture protection.",
       ],
     },
   ],
@@ -124,34 +126,27 @@ export const siteConfig = {
       company: "Hitachi MGRM",
       location: "Hyderabad, India",
       role: "Full-Stack Developer",
-      period: "Aug 2024 – Present",
+      period: "Feb 2023 – Present",
+      /** Optional clarifying line under the company; omitted if empty. */
+      note: "On client engagement via OJAS Innovative Technology Pvt. Ltd. (Feb 2023 – Apr 2025); joined Hitachi MGRM permanently in Apr 2025.",
       bullets: [
         "Delivered the HES pharmacy module and the Assam patient portal—one account across 7 hospitals—end-to-end: backend APIs, web, and React Native mobile.",
+        "Built the multitenant School Expert System (SES) and its student Scholarship module across Spring Boot, NestJS, and Next.js, including an async NestJS report pipeline migrated from pg-boss to BullMQ (Redis).",
         "Build and maintain full-stack applications across Java/Spring Boot, NestJS, React, Next.js, and React Native.",
         "Design REST/RPC APIs with clear contracts and Postman-validated client–server integrations.",
-        "Leveraged AI-assisted tooling (Cursor and Claude) to accelerate delivery; mentored juniors through code reviews.",
+        "Use AI-assisted tooling (Cursor, Claude) day-to-day for scaffolding, refactoring, and test coverage on the HES modules; mentor junior developers through code reviews.",
       ],
     },
     {
-      company: "OJAS (client: Hitachi MGRM)",
-      location: "Hyderabad, India",
-      role: "Full-Stack Developer",
-      period: "Feb 2023 – Aug 2024",
-      bullets: [
-        "Delivered full-stack web applications with Java, Spring MVC, HTML, CSS, and JavaScript.",
-        "Managed persistence with JPA/Hibernate and tuned database access.",
-        "Worked across the SDLC: design, development, testing, and deployment.",
-      ],
-    },
-    {
-      company: "OJAS Innovative Pvt. Ltd.",
+      company: "OJAS Innovative Technology Pvt. Ltd.",
       location: "Hyderabad, India",
       role: "Java Developer",
-      period: "Jun 2022 – Jan 2023",
+      period: "Nov 2021 – Feb 2023",
+      note: "",
       bullets: [
-        "Contributed to a Client Relationship Management system using Core Java, JDBC, Spring Data JPA, Hibernate, and MySQL.",
-        "Optimized data access with JPA/Hibernate.",
-        "Created and consumed RESTful APIs for client–server integration.",
+        "Contributed to a Client Relationship Management (CRM) system using Core Java, JDBC, Spring Data JPA, Hibernate, and MySQL.",
+        "Built and consumed RESTful APIs for client–server integration and tuned JPA/Hibernate data access.",
+        "Worked across the SDLC: design, development, testing, and deployment.",
       ],
     },
   ],

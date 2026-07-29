@@ -184,6 +184,14 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     lineHeight: 1.4,
   },
+  jobNote: {
+    fontSize: 8.5,
+    color: colors.muted,
+    marginBottom: 2,
+    fontFamily: FONT,
+    fontWeight: 400,
+    lineHeight: 1.4,
+  },
   bullet: {
     flexDirection: "row",
     marginTop: 2,
@@ -407,7 +415,7 @@ const pdfSkillCategories: { label: string; value: string }[] = [
   { label: "Frontend", value: "React, Next.js, TanStack Query, Tailwind CSS" },
   { label: "Mobile", value: "React Native, Expo, Expo Router" },
   { label: "Database", value: "PostgreSQL, Drizzle ORM, MySQL, Oracle" },
-  { label: "Tools & Auth", value: "Git, GitLab, Postman, better-auth, PG-Boss" },
+  { label: "Tools & Auth", value: "Git, GitLab, Postman, better-auth, PG-Boss, BullMQ (Redis)" },
   { label: "AI-assisted dev", value: "Cursor, Claude" },
 ];
 
@@ -435,6 +443,9 @@ function JobBlock({ job }: { job: (typeof siteConfig.jobs)[number] }) {
             <Text style={styles.jobMeta}>
               {job.company} — {job.location}
             </Text>
+            {"note" in job && job.note ? (
+              <Text style={styles.jobNote}>{job.note}</Text>
+            ) : null}
           </View>
           <Text style={styles.jobPeriod}>{job.period}</Text>
         </View>
@@ -452,7 +463,7 @@ function buildSummaryLines(): string[] {
   return [
     `Full-stack developer with ${y}+ years of experience in ${loc}, delivering production systems end-to-end with Java, Spring Boot, NestJS, Node.js, React, and Next.js, plus React Native mobile apps.`,
     "Design and implement REST and RPC APIs with clear contracts, validation, and integration testing; experienced with async processing, queues, and long-running workloads.",
-    "Built async report pipelines using NestJS and PG-Boss, integrated JasperReports for PDF/Excel outputs, and tuned persistence and queries for performance.",
+    "Built an async report pipeline in NestJS—migrating the queue from pg-boss to BullMQ (Redis)—to offload the legacy synchronous JasperReports (PDF/Excel) generation in Java, and tuned persistence and queries for performance.",
     "Recently delivered a healthcare enterprise system (HIS/EMR) and a patient-facing React Native app spanning UI/UX, mobile, PWA, and patient-scoped APIs.",
   ];
 }

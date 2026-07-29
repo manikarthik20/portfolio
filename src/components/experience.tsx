@@ -68,6 +68,9 @@ export function Experience() {
                     <p className="text-sm text-violet-600 dark:text-violet-400">
                       {job.company} · {job.location}
                     </p>
+                    {"note" in job && job.note ? (
+                      <p className="mt-1 text-xs italic text-slate-500 dark:text-slate-400">{job.note}</p>
+                    ) : null}
                   </div>
                   <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{job.period}</p>
                 </div>
