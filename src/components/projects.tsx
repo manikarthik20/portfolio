@@ -15,8 +15,7 @@ export function Projects() {
           Selected work at Hitachi MGRM
         </p>
         <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-          Two production systems I contributed to—one classic Spring monolith, and one polyglot stack with REST APIs,
-          multitenant Java services, and async report generation.
+          Two production systems: a Spring monolith and a polyglot platform with multitenant services and asynchronous reporting.
         </p>
         <ul className="mt-12 grid gap-8 lg:grid-cols-2">
           {siteConfig.projects.map((project) => (
@@ -25,9 +24,13 @@ export function Projects() {
               className="flex flex-col rounded-2xl border border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/50 transition hover:border-violet-200/80 dark:border-slate-700 dark:bg-slate-900 dark:shadow-none dark:hover:border-violet-500/30"
             >
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">{project.title}</h3>
-              <p className="mt-4 flex-1 leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
                 {project.description}
               </p>
+              <h4 className="mt-5 text-sm font-semibold text-slate-900 dark:text-white">Contributions</h4>
+              <ul className="mt-2 flex-1 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                {project.resumeBullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+              </ul>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {project.tech.map((t) => (
                   <li

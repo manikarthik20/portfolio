@@ -14,7 +14,7 @@ export const siteConfig = {
   tagline:
     "Building RESTful APIs, responsive web apps, and scalable backends—from monoliths to multitenant services and async workloads.",
   techSubtitle: "Java · Spring Boot · React · Node.js · Next.js · NestJS",
-  experienceYears: "4.6",
+  experienceYears: "4+",
   location: "Hyderabad, India",
   email: "manikarthik9902@gmail.com",
   linkedin: "https://www.linkedin.com/in/mani-karthik-ab3428211/",
@@ -62,6 +62,13 @@ export const siteConfig = {
         "Improved report turnaround for large PDF/Excel outputs versus synchronous in-process Jasper generation in Java.",
       ],
     },
+  ],
+  skillCategories: [
+    { title: "Languages", items: ["Java", "JavaScript"] },
+    { title: "Backend", items: ["Spring Boot", "Node.js", "NestJS"] },
+    { title: "Frontend", items: ["React", "Next.js", "TanStack Query"] },
+    { title: "Database", items: ["PostgreSQL", "MySQL", "Oracle", "Redis"] },
+    { title: "Tools", items: ["Git", "GitLab", "Postman", "PG-Boss", "Drizzle ORM"] },
   ],
   jobs: [
     {

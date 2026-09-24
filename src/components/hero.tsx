@@ -22,7 +22,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-600" />
             </span>
-            {siteConfig.experienceYears}+ years · {siteConfig.location}
+            {siteConfig.experienceYears} years · {siteConfig.location}
           </p>
           <h1 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl dark:text-white">
             Hi, I&apos;m{" "}

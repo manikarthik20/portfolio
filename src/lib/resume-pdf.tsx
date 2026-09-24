@@ -348,14 +348,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const pdfSkillCategories: { label: string; value: string }[] = [
-  { label: "Languages", value: "Java, JavaScript" },
-  { label: "Backend", value: "Spring Boot, Node.js (NestJS)" },
-  { label: "Frontend", value: "React (Basics), TanStack Query" },
-  { label: "Database", value: "PostgreSQL, MySQL, Redis" },
-  { label: "Tools", value: "Docker, Git, PG-Boss, JasperReports, Drizzle ORM" },
-];
-
 const MAX_PROJECT_BULLETS = 4;
 
 function Bullet({
@@ -485,10 +477,10 @@ function ContactLeftColumn() {
       <Text style={styles.locationText}>{siteConfig.location}</Text>
 
       <Text style={styles.sideSectionTitle}>Skills</Text>
-      {pdfSkillCategories.map((cat) => (
-        <View key={cat.label} style={styles.skillCategory}>
-          <Text style={styles.skillCatLabel}>{cat.label}</Text>
-          <Text style={styles.skillCatValue}>{cat.value}</Text>
+      {siteConfig.skillCategories.map((cat) => (
+        <View key={cat.title} style={styles.skillCategory}>
+          <Text style={styles.skillCatLabel}>{cat.title}</Text>
+          <Text style={styles.skillCatValue}>{cat.items.join(", ")}</Text>
         </View>
       ))}
     </View>
@@ -499,7 +491,7 @@ function buildSummaryLines(): string[] {
   const y = siteConfig.experienceYears;
   const loc = siteConfig.location;
   return [
-    `Backend-focused software developer with ${y}+ years of experience in ${loc}, delivering production services with Java, Spring Boot, and NestJS.`,
+    `Backend-focused software developer with ${y} years of experience in ${loc}, delivering production services with Java, Spring Boot, and NestJS.`,
     "Design and implement REST APIs with clear contracts, validation, and integration testing; experienced with async processing, queues, and long-running workloads.",
     "Built async report pipelines using NestJS and PG-Boss, integrated JasperReports for PDF/Excel outputs, and tuned persistence and queries for performance.",
     "Pragmatic about architecture, observability, and data integrity so systems scale safely with team and traffic growth.",

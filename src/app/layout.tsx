@@ -29,9 +29,8 @@ const themeInitScript = `
 `;
 
 export const metadata: Metadata = {
-  title: "Manikarthik Chandankeri | Full-Stack Developer",
-  description:
-    "Full-stack developer in Hyderabad. Java, Spring Boot, React, Next.js, NestJS. REST APIs, multitenant systems, async reporting.",
+  title: `${siteConfig.name} | ${siteConfig.role}`,
+  description: `${siteConfig.role} in ${siteConfig.location}. ${siteConfig.techSubtitle}. ${siteConfig.tagline}`,
 };
 
 export default function RootLayout({

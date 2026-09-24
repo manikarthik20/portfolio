@@ -1,32 +1,7 @@
 import { Code2, Database, Layers, Monitor, Wrench } from "lucide-react";
+import { siteConfig } from "@/lib/site-config";
 
-const categories = [
-  {
-    title: "Languages",
-    icon: Code2,
-    items: ["Java", "JavaScript"],
-  },
-  {
-    title: "Backend",
-    icon: Layers,
-    items: ["Spring Boot", "Node.js", "NestJS"],
-  },
-  {
-    title: "Frontend",
-    icon: Monitor,
-    items: ["React", "Next.js", "TanStack Query"],
-  },
-  {
-    title: "Database",
-    icon: Database,
-    items: ["PostgreSQL", "MySQL", "Oracle", "Redis"],
-  },
-  {
-    title: "Tools",
-    icon: Wrench,
-    items: ["Git", "GitLab", "Postman", "PG-Boss", "Drizzle ORM"],
-  },
-];
+const icons = [Code2, Layers, Monitor, Database, Wrench];
 
 export function Skills() {
   return (
@@ -42,8 +17,8 @@ export function Skills() {
           Languages, frameworks, data stores, and tooling from recent full-stack and Java roles.
         </p>
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {categories.map((cat) => {
-            const Icon = cat.icon;
+          {siteConfig.skillCategories.map((cat, index) => {
+            const Icon = icons[index];
             return (
               <li
                 key={cat.title}
