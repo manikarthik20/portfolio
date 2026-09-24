@@ -1,13 +1,6 @@
 import "./register-resume-fonts";
 
-import {
-  Document,
-  Link,
-  Page,
-  StyleSheet,
-  Text,
-  View,
-} from "@react-pdf/renderer";
+import { Document, Link, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { siteConfig } from "@/lib/site-config";
 
 const FONT = "Inter";
@@ -18,7 +11,9 @@ const GAP_SECTION = 8;
 const colors = {
   text: "#111827",
   muted: "#4b5563",
-  accent: "#1e40af",
+  accent: "#0b5f4e", // deep teal — section titles, headline
+  accentBright: "#0d7a63", // brighter teal — dots, divider, tech
+  rail: "#cfe7df", // timeline rail (light)
   rule: "#E5E7EB",
   projectBg: "#F9FAFB",
   projectBorder: "#64748b",
@@ -40,10 +35,11 @@ const styles = StyleSheet.create({
     marginBottom: GAP_SECTION,
   },
   headerDivider: {
-    height: 1,
-    backgroundColor: colors.rule,
-    marginTop: 5,
-    width: "100%",
+    height: 2,
+    backgroundColor: colors.accentBright,
+    marginTop: 7,
+    width: 46,
+    borderRadius: 2,
   },
   name: {
     fontSize: 19,
@@ -81,28 +77,6 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingLeft: 0,
     paddingRight: 0,
-  },
-  contactLabel: {
-    fontSize: 8.5,
-    fontFamily: FONT,
-    fontWeight: 600,
-    color: colors.muted,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
-    marginBottom: 2,
-  },
-  contactValue: {
-    fontSize: 9.5,
-    color: colors.muted,
-  },
-  contactLink: {
-    fontSize: 9.5,
-    fontFamily: FONT,
-    fontWeight: 500,
-    color: colors.accent,
-  },
-  contactBlock: {
-    marginBottom: 5,
   },
   sideSectionTitle: {
     fontSize: 9.5,
@@ -187,7 +161,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginTop: 7,
+    marginTop: 0,
   },
   jobRole: {
     fontFamily: FONT,
@@ -204,6 +178,14 @@ const styles = StyleSheet.create({
   },
   jobMeta: {
     fontSize: 9.5,
+    color: colors.muted,
+    marginBottom: 2,
+    fontFamily: FONT,
+    fontWeight: 400,
+    lineHeight: 1.4,
+  },
+  jobNote: {
+    fontSize: 8.5,
     color: colors.muted,
     marginBottom: 2,
     fontFamily: FONT,
@@ -346,143 +328,121 @@ const styles = StyleSheet.create({
     color: colors.muted,
     textAlign: "center",
   },
+  /** ATS variant: single column, no boxes/backgrounds, plain black text. */
+  atsContactLine: {
+    fontSize: 9.5,
+    fontFamily: FONT,
+    fontWeight: 400,
+    color: colors.text,
+    marginBottom: 2,
+    lineHeight: 1.5,
+  },
+  contactLink: {
+    color: colors.accentBright,
+    fontFamily: FONT,
+    fontWeight: 600,
+    textDecoration: "underline",
+  },
+  contactSep: {
+    color: colors.muted,
+  },
+  atsSkillRow: {
+    flexDirection: "row",
+    marginBottom: 2,
+  },
+  atsSkillLabel: {
+    fontSize: 10,
+    fontFamily: FONT,
+    fontWeight: 700,
+    color: colors.text,
+    width: 92,
+  },
+  atsSkillValue: {
+    flex: 1,
+    fontSize: 10,
+    fontFamily: FONT,
+    fontWeight: 400,
+    color: colors.text,
+    lineHeight: 1.45,
+  },
+  atsProjectTitle: {
+    fontFamily: FONT,
+    fontWeight: 700,
+    fontSize: 11,
+    color: colors.text,
+    marginTop: 7,
+    lineHeight: 1.3,
+  },
+  atsProjectTech: {
+    fontSize: 9.5,
+    fontFamily: FONT,
+    fontWeight: 600,
+    color: colors.accentBright,
+    marginBottom: 2,
+    lineHeight: 1.4,
+  },
+  /** Timeline (design C): rail + dot gutter beside each role. */
+  tlRow: {
+    flexDirection: "row",
+    marginTop: 7,
+  },
+  tlGutter: {
+    width: 13,
+    alignItems: "center",
+  },
+  tlDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
+    backgroundColor: colors.accentBright,
+    marginTop: 3,
+  },
+  tlLine: {
+    width: 1.5,
+    flexGrow: 1,
+    backgroundColor: colors.rail,
+    marginTop: 2,
+  },
+  tlContent: {
+    flex: 1,
+    paddingLeft: 7,
+  },
 });
 
-const MAX_PROJECT_BULLETS = 4;
-
-function Bullet({
-  children,
-  compact,
-}: {
-  children: string;
-  compact?: boolean;
-}) {
+function Bullet({ children }: { children: string }) {
   return (
     <View style={styles.bullet}>
-      <Text style={compact ? styles.projectBulletChar : styles.bulletChar}>
-        •
-      </Text>
-      <Text style={compact ? styles.projectBulletText : styles.bulletText}>
-        {children}
-      </Text>
+      <Text style={styles.bulletChar}>•</Text>
+      <Text style={styles.bulletText}>{children}</Text>
     </View>
   );
 }
 
+/** One role as a timeline node: rail + dot in the gutter, content on the right. */
 function JobBlock({ job }: { job: (typeof siteConfig.jobs)[number] }) {
   return (
-    <View>
-      <View style={styles.jobHeader}>
-        <View>
-          <Text style={styles.jobRole}>{job.role}</Text>
-          <Text style={styles.jobMeta}>
-            {job.company} — {job.location}
-          </Text>
-        </View>
-        <Text style={styles.jobPeriod}>{job.period}</Text>
+    <View style={styles.tlRow} wrap={false}>
+      <View style={styles.tlGutter}>
+        <View style={styles.tlDot} />
+        <View style={styles.tlLine} />
       </View>
-      {job.bullets.map((b) => (
-        <Bullet key={b}>{b}</Bullet>
-      ))}
-    </View>
-  );
-}
-
-/** Single project: must not split across pages (wrap={false}). */
-function ProjectCard({
-  first,
-  title,
-  tech,
-  bullets,
-}: {
-  first: boolean;
-  title: string;
-  tech: string;
-  bullets: readonly string[];
-}) {
-  const lines = bullets.slice(0, MAX_PROJECT_BULLETS);
-  return (
-    <View wrap={false} style={first ? styles.projectCardFirst : styles.projectCard}>
-      <Text style={styles.projectTitle}>{title}</Text>
-      <Text style={styles.projectTech}>{tech}</Text>
-      {lines.map((line, i) => (
-        <Bullet key={`${title}-b-${i}`} compact>
-          {line}
-        </Bullet>
-      ))}
-    </View>
-  );
-}
-
-/**
- * Full Projects panel: title + all cards stay together; equivalent to page-break-inside: avoid.
- * Lives on page 2 only so it never straddles page 1 / page 2 boundary.
- */
-function ProjectsSectionUnbroken() {
-  return (
-    <View wrap={false} style={styles.projectsSectionUnbroken}>
-      <Text style={styles.projectsSectionTitle}>Projects</Text>
-      {siteConfig.projects.map((p, idx) => (
-        <ProjectCard
-          key={p.title}
-          first={idx === 0}
-          title={p.title}
-          tech={`Tech stack: ${p.tech.join(", ")}`}
-          bullets={p.resumeBullets}
-        />
-      ))}
-    </View>
-  );
-}
-
-function ContactLeftColumn() {
-  const phone = siteConfig.phone?.trim();
-  const gh = siteConfig.githubUrl?.trim();
-
-  return (
-    <View>
-      <Text style={styles.sideSectionTitleFirst}>Contact</Text>
-
-      {phone ? (
-        <View style={styles.contactBlock}>
-          <Text style={styles.contactLabel}>Phone</Text>
-          <Text style={styles.contactValue}>{phone}</Text>
+      <View style={styles.tlContent}>
+        <View style={styles.jobHeader}>
+          <View>
+            <Text style={styles.jobRole}>{job.role}</Text>
+            <Text style={styles.jobMeta}>
+              {job.company} — {job.location}
+            </Text>
+            {"note" in job && job.note ? (
+              <Text style={styles.jobNote}>{job.note}</Text>
+            ) : null}
+          </View>
+          <Text style={styles.jobPeriod}>{job.period}</Text>
         </View>
-      ) : null}
-
-      <View style={styles.contactBlock}>
-        <Text style={styles.contactLabel}>Email</Text>
-        <Link src={`mailto:${siteConfig.email}`}>
-          <Text style={styles.contactLink}>{siteConfig.email}</Text>
-        </Link>
+        {job.bullets.map((b) => (
+          <Bullet key={b}>{b}</Bullet>
+        ))}
       </View>
-
-      <View style={styles.contactBlock}>
-        <Text style={styles.contactLabel}>LinkedIn</Text>
-        <Link src={siteConfig.linkedin}>
-          <Text style={styles.contactLink}>Profile</Text>
-        </Link>
-      </View>
-
-      {gh ? (
-        <View style={styles.contactBlock}>
-          <Text style={styles.contactLabel}>GitHub</Text>
-          <Link src={gh}>
-            <Text style={styles.contactLink}>Profile</Text>
-          </Link>
-        </View>
-      ) : null}
-
-      <Text style={styles.sideSectionTitle}>Location</Text>
-      <Text style={styles.locationText}>{siteConfig.location}</Text>
-
-      <Text style={styles.sideSectionTitle}>Skills</Text>
-      {siteConfig.skillCategories.map((cat) => (
-        <View key={cat.title} style={styles.skillCategory}>
-          <Text style={styles.skillCatLabel}>{cat.title}</Text>
-          <Text style={styles.skillCatValue}>{cat.items.join(", ")}</Text>
-        </View>
-      ))}
     </View>
   );
 }
@@ -491,10 +451,10 @@ function buildSummaryLines(): string[] {
   const y = siteConfig.experienceYears;
   const loc = siteConfig.location;
   return [
-    `Backend-focused software developer with ${y} years of experience in ${loc}, delivering production services with Java, Spring Boot, and NestJS.`,
-    "Design and implement REST APIs with clear contracts, validation, and integration testing; experienced with async processing, queues, and long-running workloads.",
-    "Built async report pipelines using NestJS and PG-Boss, integrated JasperReports for PDF/Excel outputs, and tuned persistence and queries for performance.",
-    "Pragmatic about architecture, observability, and data integrity so systems scale safely with team and traffic growth.",
+    `Full-stack developer with ${y} years of experience in ${loc}, delivering production systems end-to-end with Java, Spring Boot, NestJS, Node.js, React, and Next.js, plus React Native mobile apps.`,
+    "Design and implement REST and RPC APIs with clear contracts, validation, and integration testing; experienced with async processing, queues, and long-running workloads.",
+    "Built an async report pipeline in NestJS—migrating the queue from pg-boss to BullMQ (Redis)—to offload the legacy synchronous JasperReports (PDF/Excel) generation in Java, and tuned persistence and queries for performance.",
+    "Recently delivered a healthcare enterprise system (HIS/EMR) and a patient-facing React Native app spanning UI/UX, mobile, PWA, and patient-scoped APIs.",
   ];
 }
 
@@ -510,58 +470,126 @@ function PageFooter() {
   );
 }
 
-export function ResumePdfDocument() {
-  const docTitle = `${siteConfig.name} — ${siteConfig.resumeHeadlineRole}`;
+/** Single-column project block (no card box; shows all bullets). */
+function ProjectBlock({
+  title,
+  tech,
+  bullets,
+}: {
+  title: string;
+  tech: string;
+  bullets: readonly string[];
+}) {
+  return (
+    <View wrap={false}>
+      <Text style={styles.atsProjectTitle}>{title}</Text>
+      <Text style={styles.atsProjectTech}>{tech}</Text>
+      {bullets.map((line, i) => (
+        <Bullet key={`${title}-b-${i}`}>{line}</Bullet>
+      ))}
+    </View>
+  );
+}
+
+/** Single-column, ATS-safe body: plain flow, standard headings, no sidebar/boxes. */
+function ResumeBody() {
   const summaryLines = buildSummaryLines();
+  const phone = siteConfig.phone?.trim();
+  const portfolio = siteConfig.portfolioUrl?.trim();
+  const gh = siteConfig.githubUrl?.trim();
+  const sep = <Text style={styles.contactSep}>{"   |   "}</Text>;
 
   return (
+    <Page size="A4" style={styles.page}>
+      <View style={styles.headerBlock}>
+        <Text style={styles.name}>{siteConfig.name}</Text>
+        <Text style={styles.headlineTitle}>
+          {siteConfig.resumeHeadlineRole} ({siteConfig.resumeHeadlineStack})
+        </Text>
+        <View style={styles.headerDivider} />
+      </View>
+
+      <Text style={styles.atsContactLine}>
+        {phone ? (
+          <>
+            {phone}
+            {sep}
+          </>
+        ) : null}
+        <Link src={`mailto:${siteConfig.email}`} style={styles.contactLink}>
+          {siteConfig.email}
+        </Link>
+        {sep}
+        {siteConfig.location}
+      </Text>
+      <Text style={styles.atsContactLine}>
+        <Link src={siteConfig.linkedin} style={styles.contactLink}>
+          LinkedIn Profile
+        </Link>
+        {portfolio ? (
+          <>
+            {sep}
+            <Link src={portfolio} style={styles.contactLink}>
+              Portfolio
+            </Link>
+          </>
+        ) : null}
+        {gh ? (
+          <>
+            {sep}
+            <Link src={gh} style={styles.contactLink}>
+              GitHub
+            </Link>
+          </>
+        ) : null}
+      </Text>
+
+      <Text style={styles.sectionTitle}>Summary</Text>
+      {summaryLines.map((line, i) => (
+        <Text key={`ats-s-${i}`} style={styles.summaryLine}>
+          {line}
+        </Text>
+      ))}
+
+      <Text style={styles.sectionTitle}>Skills</Text>
+      {siteConfig.skillCategories.map((cat) => (
+        <View key={cat.title} style={styles.atsSkillRow}>
+          <Text style={styles.atsSkillLabel}>{cat.title}</Text>
+          <Text style={styles.atsSkillValue}>{cat.items.join(", ")}</Text>
+        </View>
+      ))}
+
+      <Text style={styles.sectionTitle}>Experience</Text>
+      {siteConfig.jobs.map((job) => (
+        <JobBlock key={`ats-${job.company}-${job.period}`} job={job} />
+      ))}
+
+      <Text style={styles.sectionTitle}>Projects</Text>
+      {siteConfig.projects.map((p) => (
+        <ProjectBlock
+          key={p.title}
+          title={p.title}
+          tech={`Tech: ${p.tech.join(", ")}`}
+          bullets={p.resumeBullets}
+        />
+      ))}
+
+      <Text style={styles.sectionTitle}>Education</Text>
+      <Text style={styles.eduDegree}>{siteConfig.education.degree}</Text>
+      <Text style={styles.eduMeta}>{siteConfig.education.institution}</Text>
+      <Text style={styles.eduMeta}>{siteConfig.education.period}</Text>
+
+      <PageFooter />
+    </Page>
+  );
+}
+
+/** Single-column modern resume — ATS-safe and recruiter-friendly (served at /api/resume). */
+export function ResumePdfDocument() {
+  const docTitle = `${siteConfig.name} — ${siteConfig.resumeHeadlineRole}`;
+  return (
     <Document title={docTitle} author={siteConfig.name} subject="Resume">
-      {/* Page 1 — Summary + Experience (projects never appear here) */}
-      <Page size="A4" style={styles.page}>
-        <View style={styles.headerBlock}>
-          <Text style={styles.name}>{siteConfig.name}</Text>
-          <Text style={styles.headlineTitle}>
-            {siteConfig.resumeHeadlineRole} ({siteConfig.resumeHeadlineStack})
-          </Text>
-          <View style={styles.headerDivider} />
-        </View>
-
-        <View style={styles.columns}>
-          <View style={styles.colLeft}>
-            <ContactLeftColumn />
-          </View>
-
-          <View style={styles.colRight}>
-            <Text style={styles.sectionTitleFirst}>Professional summary</Text>
-            {summaryLines.map((line, i) => (
-              <Text key={`s-${i}`} style={styles.summaryLine}>
-                {line}
-              </Text>
-            ))}
-
-            <Text style={styles.sectionTitle}>Experience</Text>
-            {siteConfig.jobs.map((job) => (
-              <JobBlock key={`${job.company}-${job.period}`} job={job} />
-            ))}
-          </View>
-        </View>
-
-        <PageFooter />
-      </Page>
-
-      {/* Page 2 — Projects + Education only (no repeated name/title) */}
-      <Page size="A4" style={styles.page}>
-        <View style={styles.colFull}>
-          <ProjectsSectionUnbroken />
-
-          <Text style={styles.educationSectionTitle}>Education</Text>
-          <Text style={styles.eduDegree}>{siteConfig.education.degree}</Text>
-          <Text style={styles.eduMeta}>{siteConfig.education.institution}</Text>
-          <Text style={styles.eduMeta}>{siteConfig.education.period}</Text>
-        </View>
-
-        <PageFooter />
-      </Page>
+      <ResumeBody />
     </Document>
   );
 }

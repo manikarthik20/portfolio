@@ -1,4 +1,5 @@
 import { Mail } from "lucide-react";
+import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 
 export function Projects() {
@@ -12,17 +13,29 @@ export function Projects() {
           Projects
         </h2>
         <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Selected work at Hitachi MGRM
+          Selected project work
         </p>
         <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-          Two production systems: a Spring monolith and a polyglot platform with multitenant services and asynchronous reporting.
+          Production systems I&apos;ve contributed to—from a classic Spring monolith and a multitenant polyglot stack
+          with async reporting, to an AI-native hospital enterprise system and a patient-facing mobile app.
         </p>
         <ul className="mt-12 grid gap-8 lg:grid-cols-2">
           {siteConfig.projects.map((project) => (
             <li
               key={project.title}
-              className="flex flex-col rounded-2xl border border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/50 transition hover:border-violet-200/80 dark:border-slate-700 dark:bg-slate-900 dark:shadow-none dark:hover:border-violet-500/30"
+              className="flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-8 shadow-xl shadow-slate-200/50 transition hover:border-violet-200/80 dark:border-slate-700 dark:bg-slate-900 dark:shadow-none dark:hover:border-violet-500/30"
             >
+              {project.image ? (
+                <div className="mb-6 -mx-8 -mt-8 border-b border-slate-200/80 bg-slate-50 dark:border-slate-700 dark:bg-slate-800/50">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    width={1200}
+                    height={675}
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+              ) : null}
               <h3 className="text-xl font-bold text-slate-900 dark:text-white">{project.title}</h3>
               <p className="mt-4 leading-relaxed text-slate-600 dark:text-slate-300">
                 {project.description}

@@ -1,7 +1,7 @@
-import { Code2, Database, Layers, Monitor, Wrench } from "lucide-react";
+import { Code2, Database, Layers, Monitor, Smartphone, Sparkles, Wrench } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 
-const icons = [Code2, Layers, Monitor, Database, Wrench];
+const icons = [Code2, Layers, Monitor, Smartphone, Database, Wrench, Sparkles];
 
 export function Skills() {
   return (
