@@ -19,7 +19,7 @@ export function About() {
               I&apos;m <strong className="text-slate-900 dark:text-white">{siteConfig.name}</strong>, a{" "}
               {siteConfig.role.toLowerCase()} with{" "}
               <strong className="text-slate-900 dark:text-white">
-                {siteConfig.experienceYears} years
+                {siteConfig.experienceYears} 
               </strong>{" "}
               of experience shipping production systems. I focus on{" "}
               <strong className="text-slate-900 dark:text-white">Java</strong> and{" "}
