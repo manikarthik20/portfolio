@@ -451,7 +451,7 @@ function buildSummaryLines(): string[] {
   const y = siteConfig.experienceYears;
   const loc = siteConfig.location;
   return [
-    `Full-stack developer with ${y} years of experience in ${loc}, delivering production systems end-to-end with Java, Spring Boot, NestJS, Node.js, React, and Next.js, plus React Native mobile apps.`,
+    `Full-stack developer with ${y} of experience in ${loc}, delivering production systems end-to-end with Java, Spring Boot, NestJS, Node.js, React, and Next.js, plus React Native mobile apps.`,
     "Design and implement REST and RPC APIs with clear contracts, validation, and integration testing; experienced with async processing, queues, and long-running workloads.",
     "Built an async report pipeline in NestJS—migrating the queue from pg-boss to BullMQ (Redis)—to offload the legacy synchronous JasperReports (PDF/Excel) generation in Java, and tuned persistence and queries for performance.",
     "Recently delivered a healthcare enterprise system (HIS/EMR) and a patient-facing React Native app spanning UI/UX, mobile, PWA, and patient-scoped APIs.",

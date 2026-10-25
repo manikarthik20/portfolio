@@ -27,7 +27,7 @@ export function Experience() {
           Experience
         </h2>
         <p className="mt-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
-          {siteConfig.experienceYears} years in software engineering
+          {siteConfig.experienceYears} in software engineering
         </p>
         <p className="mt-4 max-w-3xl text-lg text-slate-600 dark:text-slate-300">
           I&apos;ve worked across the stack in Hyderabad—from Java CRM systems to full-stack product work at Hitachi MGRM,
