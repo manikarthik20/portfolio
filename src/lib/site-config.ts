@@ -34,11 +34,11 @@ export const siteConfig = {
   },
   skillCategories: [
     { title: "Languages", items: ["Java", "TypeScript", "JavaScript", "SQL"] },
-    { title: "Backend", items: ["Spring Boot", "NestJS", "Node.js", "Fastify", "ConnectRPC"] },
+    { title: "Backend", items: ["Spring Boot", "Spring Data JPA", "Hibernate", "NestJS", "Node.js", "Fastify", "ConnectRPC"] },
     { title: "Frontend", items: ["React", "Next.js", "TanStack Query", "Tailwind CSS"] },
     { title: "Mobile", items: ["React Native", "Expo", "Expo Router"] },
     { title: "Database", items: ["PostgreSQL", "Drizzle ORM", "MySQL", "Oracle"] },
-    { title: "Tools & Auth", items: ["Git", "GitLab", "Postman", "better-auth", "PG-Boss", "BullMQ"] },
+    { title: "Tools & Auth", items: ["Git", "GitLab", "Postman", "RestTemplate", "Maven", "Apache Tomcat", "better-auth", "PG-Boss", "BullMQ"] },
     { title: "AI-assisted dev", items: ["Cursor", "Claude"] },
   ],
   projects: [
@@ -80,6 +80,31 @@ export const siteConfig = {
         "Owned the student Scholarship module across the Spring Boot/NestJS backend and the SES UI (Next.js, Mantine, Redux/redux-saga, React Query, React Hook Form).",
         "Re-architected reporting off the synchronous in-process JasperReports (Java) path onto an async NestJS queue—first pg-boss, then migrated to BullMQ (Redis)—to keep user-facing APIs responsive.",
         "Streamed large exports row-by-row from Postgres to file with a concurrency-limited worker, rendering the PDF reports with PDFKit and eliminating the whole-result in-memory buffering and request-thread blocking of the legacy Jasper path.",
+      ],
+    },
+    {
+      title: "RVSK Attendance Sync",
+      image: "",
+      description:
+        "Developed both the original NVSK v1 integration and its RVSK v2 successor: a scheduled Java 8 and Spring Boot service syncing daily teacher attendance, student attendance, and grade-wise enrolment from Oracle to the national education monitoring portal through REST APIs.",
+      tech: [
+        "Java 8",
+        "Spring Boot 2.5",
+        "Spring Data JPA",
+        "Hibernate",
+        "Oracle",
+        "RestTemplate",
+        "REST APIs",
+        "@Async",
+        "Maven",
+        "Apache Tomcat",
+      ],
+      resumeBullets: [
+        "Built a scheduled Spring Boot service to sync daily teacher and student attendance plus grade-wise enrolment from Oracle to the national RVSK portal.",
+        "Developed the initial NVSK v1 integration and then migrated it to RVSK v2, implementing bearer-token authentication with cached, thread-safe refresh and retry on 403 responses, grade-wise demographic payloads, and PATCH-based enrolment sync.",
+        "Added parallel batch processing with @Async, a bounded thread pool, and paginated Oracle OFFSET/FETCH queries to limit memory use.",
+        "Added record validation and per-batch audit entries in RVSK_SYNC_LOG, replacing file-based logging that stored login tokens.",
+        "Resolved Tomcat scheduler and Spring @Async proxy issues; moved configuration and secrets to environment variables and added a rollout flag and deployment guidance.",
       ],
     },
     {

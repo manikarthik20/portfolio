@@ -16,8 +16,8 @@ export function Projects() {
           Selected project work
         </p>
         <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-400">
-          Production systems I&apos;ve contributed to—from a classic Spring monolith and a multitenant polyglot stack
-          with async reporting, to an AI-native hospital enterprise system and a patient-facing mobile app.
+          Production systems I&apos;ve contributed to—from education data integration and a classic Spring monolith
+          to multitenant services, an AI-native hospital system, and a patient-facing mobile app.
         </p>
         <ul className="mt-12 grid gap-8 lg:grid-cols-2">
           {siteConfig.projects.map((project) => (
